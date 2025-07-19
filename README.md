@@ -11,3 +11,6 @@ docker-compose -f docker/docker-compose.yml up --build
 ```
 
 Backend runs at `http://localhost:8000`, frontend at `http://localhost:3000`.
+
+The frontend container runs an entrypoint script that installs dependencies if
+`node_modules` is missing before starting Vite.
