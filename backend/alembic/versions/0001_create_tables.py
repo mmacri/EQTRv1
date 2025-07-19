@@ -12,7 +12,7 @@ def upgrade():
         'horses',
         sa.Column('id', sa.String(), primary_key=True),
         sa.Column('name', sa.String(), nullable=False, unique=True),
-        sa.Column('owner_id', sa.String(), nullable=True),
+        sa.Column('owner_id', sa.String(), sa.ForeignKey('owners.id'), nullable=True),
         sa.Column('status', sa.String(), nullable=True),
         sa.Column('location', sa.String(), nullable=True),
         sa.Column('breed', sa.String(), nullable=True),
@@ -48,7 +48,7 @@ def upgrade():
     op.create_table(
         'activities',
         sa.Column('id', sa.String(), primary_key=True),
-        sa.Column('horse_id', sa.String(), nullable=False),
+        sa.Column('horse_id', sa.String(), sa.ForeignKey('horses.id'), nullable=False),
         sa.Column('activity_type', sa.String()),
         sa.Column('start_time', sa.DateTime()),
         sa.Column('end_time', sa.DateTime()),
@@ -59,8 +59,8 @@ def upgrade():
     op.create_table(
         'drug_tests',
         sa.Column('id', sa.String(), primary_key=True),
-        sa.Column('horse_id', sa.String()),
-        sa.Column('race_id', sa.String()),
+        sa.Column('horse_id', sa.String(), sa.ForeignKey('horses.id')),
+        sa.Column('race_id', sa.String(), sa.ForeignKey('races.id')),
         sa.Column('result', sa.String()),
         sa.Column('date', sa.Date()),
         sa.Column('notes', sa.String()),
@@ -69,7 +69,7 @@ def upgrade():
     op.create_table(
         'vet_records',
         sa.Column('id', sa.String(), primary_key=True),
-        sa.Column('horse_id', sa.String()),
+        sa.Column('horse_id', sa.String(), sa.ForeignKey('horses.id')),
         sa.Column('visit_date', sa.Date()),
         sa.Column('notes', sa.String()),
         sa.Column('injury_type', sa.String()),
