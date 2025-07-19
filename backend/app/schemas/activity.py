@@ -8,6 +8,7 @@ class ActivityBase(BaseModel):
     start_time: Optional[datetime] = None
     end_time: Optional[datetime] = None
     location: Optional[str] = None
+    location_id: Optional[str] = None
     notes: Optional[str] = None
 
 class ActivityCreate(ActivityBase):
