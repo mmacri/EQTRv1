@@ -10,4 +10,7 @@ Build and start services:
 docker-compose -f docker/docker-compose.yml up --build
 ```
 
+The backend stores its SQLite database in `backend/db`. The Dockerfile and
+startup routines will create this folder automatically if it does not exist.
+
 Backend runs at `http://localhost:8000`, frontend at `http://localhost:3000`.
