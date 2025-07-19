@@ -17,7 +17,10 @@ class Activity(Base):
     start_time = Column(DateTime)
     end_time = Column(DateTime)
     location = Column(String)
+    location_id = Column(String, ForeignKey("locations.id"))
     notes = Column(String)
 
-    location_rel = relationship("Location", back_populates="activities")
+    location_rel = relationship(
+        "Location", back_populates="activities", foreign_keys=[location_id]
+    )
     horse = relationship("Horse", back_populates="activities")
