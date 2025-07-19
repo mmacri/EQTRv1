@@ -25,3 +25,14 @@ The SQLite database file lives at `backend/db/data.db` (inside the container it 
 ### Admin UI and demo data
 
 The admin data grid is served at `http://localhost:3000/grid`. You can populate the app with sample content by toggling "Demo data" in the UI before initialization.
+
+### Running tests
+
+Unit tests live under `backend/app/tests`. Install backend dependencies and run
+pytest with `PYTHONPATH` pointing at the `backend` directory so the `app`
+package resolves correctly:
+
+```bash
+pip install -r backend/requirements.txt
+PYTHONPATH=backend pytest
+```
